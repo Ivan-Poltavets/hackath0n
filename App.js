@@ -1,37 +1,52 @@
-import MapView, {Marker, Geojson} from 'react-native-maps';
-import React, { useState, useEffect, Component } from 'react';
-import { StyleSheet, Text, View, Button, Alert, Dimensions } from 'react-native';
-import coordinates from './search';
+import MapView from 'react-native-maps';
+import React, { useRef } from 'react';
+import { StyleSheet, View, Dimensions } from 'react-native';
+import * as Location from 'expo-location';
 import Search from './search';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-
+import Direction from './direction';
 
 
 const {width, height} = Dimensions.get('window');
 
 const ASPECT_RATIO = width / height;
-const LATITUDE_DELTA = 0.0922;
+const LATITUDE_DELTA = 0.002;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 const geodata = require('./assets/bicycles_geojson_2021-11-12.json');
-// const mapgeo = require('./assets/map.json');
-// const map_lines = require('./assets/map_lines.json');
 
 
+function getCurrentPosition() {
+  return new Promise(async (resolve, reject) => {
+    try {
+      await Location.requestForegroundPermissionsAsync();
+    }
+    catch{}
 
+    let location = await Location.getCurrentPositionAsync({});
+    console.log(location.coords);
+    resolve(location);
+  });
+}
 
-  function App() {
+function App() {
+  const mapRef = useRef(null);
+  const directionRef = useRef(null);
+
+  getCurrentPosition().then(location => {
+    mapRef.current.animateToRegion({
+      latitude: location.coords.latitude,
+      longitude: location.coords.longitude,
+      latitudeDelta: LATITUDE_DELTA,
+      longitudeDelta: LONGITUDE_DELTA
+    }, 1000);
+  });
+
   return (
     <View style={styles.container}>
-    <MapView style={styles.map}>
-    </MapView>
-    <View style={styles.searchBar}>
-      <Search></Search>
-    </View>
-    <View style={styles.popup}>
-        <Button title="___" onPress={onShowPopup}></Button>
-    </View>
+      <MapView ref={mapRef} style={styles.map}>
+        <Direction ref={directionRef}></Direction>
+      </MapView>
+      <Search onSubmitEditing={async(event, text) => {directionRef.current.makeDirection(await getCurrentPosition(), text)}}></Search>
     </View>
   )
 }
@@ -43,10 +58,7 @@ const styles = StyleSheet.create({
   container:{
     flex:1,
   },
-  popup:{
-    flex:1,
-    justifyContent:'flex-end',
-  },
+  
 });
 
 export default App;
