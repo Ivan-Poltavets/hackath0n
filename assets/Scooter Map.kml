@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Scooter Map</name>
+    <description/>
+    <NetworkLink>
+      <name>Scooter Map</name>
+      <Link>
+        <href><![CDATA[https://www.google.com/maps/d/u/0/kml?forcekml=1&mid=1uLmkWJD4SoyFNVaR0_iOKEuHi89Iz1nJ]]></href>
+      </Link>
+    </NetworkLink>
+  </Document>
+</kml>
