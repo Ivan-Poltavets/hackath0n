@@ -14,6 +14,7 @@ import { LocationModule } from './location/location.module';
 import {
   LoginValidationMiddleware,
   RegisterValidationMiddleware,
+  LocationCreateValidationMiddleware,
 } from './middlewares';
 import { UserModule } from './user/user.module';
 
@@ -41,6 +42,10 @@ export class AppModule implements NestModule {
     });
     consumer.apply(RegisterValidationMiddleware).forRoutes({
       path: 'users/register',
+      method: RequestMethod.POST,
+    });
+    consumer.apply(LocationCreateValidationMiddleware).forRoutes({
+      path: 'locations/create',
       method: RequestMethod.POST,
     });
   }

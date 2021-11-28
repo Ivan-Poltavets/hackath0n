@@ -26,7 +26,7 @@ export class LocationController {
   createLocation(
     @Body() createLocationDTO: CreateLocationDTO,
     @Request() req,
-  ): Promise<UpdateResult> {
+  ): Promise<Location> {
     return this.locationService.createLocation(createLocationDTO, req.user);
   }
 
@@ -50,8 +50,9 @@ export class LocationController {
     return this.locationService.deleteLocation(locationId);
   }
 
-  // @Get()
-  // findAllLocations(): Promise<Location[]> {
-  //   return this.locationService.findAllLocations();
-  // }
+  @Get()
+  findAllLocations(): Promise<Location[]> {
+    console.log('sdfsd');
+    return this.locationService.findAllLocations();
+  }
 }

@@ -14,21 +14,19 @@ import { JWTPayloadDTO } from 'src/dtos';
 @EntityRepository(Location)
 export class LocationRepository extends Repository<Location> {
   async createLocation(
-    createLocationDTO: CreateLocationDTO,
+    { coordinates, title, images, description }: CreateLocationDTO,
     user: JWTPayloadDTO,
-    transactionManager?: EntityManager,
-  ): Promise<UpdateResult> {
-    const manager = transactionManager || this;
+  ): Promise<Location> {
+    const location = {
+      ...new Location(),
+      coordinates,
+      title,
+      images,
+      description,
+      user: { id: Number(user.userId) },
+    };
 
-    return manager
-      .createQueryBuilder()
-      .insert()
-      .into(Location)
-      .values({
-        coordinates: createLocationDTO.coordinates,
-        user: { id: Number(user.userId) },
-      })
-      .execute();
+    return this.save(location);
   }
 
   async updateLocation(
@@ -64,11 +62,7 @@ export class LocationRepository extends Repository<Location> {
       .execute();
   }
 
-  // async findAllLocations(
-  //   transactionManager?: EntityManager,
-  // ): Promise<Location[]> {
-  //   const manager = transactionManager || this;
-
-  //   return manager.createQueryBuilder('locations').getMany();
-  // }
+  async findAllLocations(): Promise<Location[]> {
+    return this.createQueryBuilder('locations').getMany();
+  }
 }

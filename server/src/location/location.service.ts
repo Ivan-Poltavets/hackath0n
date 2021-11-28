@@ -14,7 +14,7 @@ export class LocationService {
   createLocation(
     createLocationDTO: CreateLocationDTO,
     user: JWTPayloadDTO,
-  ): Promise<UpdateResult> {
+  ): Promise<Location> {
     return this.locationRepository.createLocation(createLocationDTO, user);
   }
 
@@ -34,7 +34,7 @@ export class LocationService {
     return this.locationRepository.deleteLocation(locationId);
   }
 
-  // findAllLocations(): Promise<Location[]> {
-  //   return this.locationRepository.findAllLocations();
-  // }
+  findAllLocations(): Promise<Location[]> {
+    return this.locationRepository.findAllLocations();
+  }
 }

@@ -20,6 +20,15 @@ export class Location extends BaseEntity {
   @Column({ type: 'simple-array' })
   coordinates: string[];
 
+  @Column()
+  title: string;
+
+  @Column({ type: 'simple-array' })
+  images: string[];
+
+  @Column({ type: 'text' })
+  description: string;
+
   @ManyToOne(() => User, (user) => user.locations)
   user: User;
 

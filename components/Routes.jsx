@@ -9,13 +9,13 @@ import Auth from '../screens/Auth/Auth';
 import About from '../screens/About/About';
 import Home from '../screens/Home/Home';
 import MapScreen from '../screens/Map/Map';
+import Locations from '../screens/Locations/Locations';
+import LocationCreate from '../screens/LocationCreate/LocationCreate';
 // import User from '../screens/User/User';
-// import LocationCreate from '../screens/LocationCreate';
 // import InformationCreate from '../screens/InformationCreate';
 // import LocationEdit from '../screens/LocationEdit';
 // import InformationEdit from '../screens/InformationEdit';
 // import Location from '../screens/Location';
-// import Locations from '../screens/Locations';
 // import UserEdit from '../screens/UserEdit';
 // import Users from '../screens/Users';
 
@@ -55,7 +55,7 @@ const Routes = () => {
     { name: 'About', component: About, title: 'About' },
     { name: 'Map', component: MapScreen, title: 'Map' },
     // { name: 'Location', component: Location, title: 'Location' },
-    // { name: 'Locations', component: Locations, title: 'All Locations' },
+    { name: 'Locations', component: Locations, title: 'All Locations' },
     // { name: 'User', component: User, title: 'Profile' },
     // { name: 'Users', component: Users, title: 'All Users' },
   ];
@@ -63,11 +63,11 @@ const Routes = () => {
   const routes = {
     adminRoutes: [
       ...mainRoutes,
-      // {
-      //   name: 'LocationCreate',
-      //   component: LocationCreate,
-      //   title: 'Create Location',
-      // },
+      {
+        name: 'LocationCreate',
+        component: LocationCreate,
+        title: 'Create Location',
+      },
       // {
       //   name: 'InformationCreate',
       //   component: InformationCreate,

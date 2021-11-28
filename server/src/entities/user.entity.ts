@@ -9,7 +9,6 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Comment } from './comment.entity';
-import { Information } from './information.entity';
 import { Location } from './location.entity';
 import { Rating } from './rating.entity';
 
@@ -65,7 +64,4 @@ export class User extends BaseEntity {
 
   @OneToMany(() => Location, (location) => location.user)
   locations: Location[];
-
-  @OneToMany(() => Information, (information) => information.user)
-  informations: Information[];
 }

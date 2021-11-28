@@ -15,7 +15,7 @@ const Tabs = ({ navigation, route }) => {
   const tabs = [
     { name: 'Home', iconName: 'home-outline' },
     { name: 'Map', iconName: 'map-outline' },
-    { name: 'Places', iconName: 'map-marker-outline' },
+    { name: 'Locations', iconName: 'map-marker-outline' },
     { name: 'Users', iconName: 'account-group-outline' },
     { name: 'User', iconName: 'account-outline' },
   ];
