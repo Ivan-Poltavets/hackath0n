@@ -9,6 +9,7 @@ import styleBase from '../../styles/base.style';
 import { fetchAuth } from '../../redux/auth/auth.action';
 import { clearErrorAuth, resetErrorsAuth } from '../../redux/auth/auth.action';
 import Tabs from '../../components/Tabs/Tabs';
+import styles from './auth.style';
 
 const Auth = ({ route, navigation }) => {
   const dispatch = useDispatch();
@@ -72,7 +73,9 @@ const Auth = ({ route, navigation }) => {
       lastname: lastname.value,
       ...loginParams,
     };
-    dispatch(fetchAuth(isLogin, isLogin ? loginParams : registerParams));
+    dispatch(
+      fetchAuth(isLogin, isLogin ? loginParams : registerParams, navigation),
+    );
   };
 
   const handleFlipForm = () => {
@@ -112,7 +115,7 @@ const Auth = ({ route, navigation }) => {
             />
           ))}
         </View>
-        <View style={[styleBase.btns, { marginTop: 20 }]}>
+        <View style={[styleBase.btns, styles.btns]}>
           <Button
             primary
             iconName={

@@ -101,4 +101,14 @@ function Map() {
   );
 }
 
+// const styles = StyleSheet.create({
+//   map: {
+//     ...StyleSheet.absoluteFillObject,
+//   },
+//   container:{
+//     flex:1,
+//   },
+
+// });
+
 export default Map;

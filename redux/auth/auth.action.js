@@ -30,33 +30,39 @@ export const clearErrorAuth = (payload) => ({
   payload,
 });
 
-export const fetchAuth = (isLogin, credentials) => async (dispatch) => {
-  try {
-    dispatch(fetchStartAuth());
+export const fetchAuth =
+  (isLogin, credentials, navigation) => async (dispatch) => {
+    try {
+      dispatch(fetchStartAuth());
+      console.log({
+        credentials,
+        url: `users/${isLogin ? 'login' : 'register'}`,
+      });
+      const res = await fetchData({
+        method: 'post',
+        url: `users/${isLogin ? 'login' : 'register'}`,
+        data: credentials,
+      });
 
-    const res = await fetchData({
-      method: 'post',
-      url: `users/${isLogin ? 'login' : 'register'}`,
-      data: credentials,
-    });
-
-    if ('details' in res) {
-      dispatch(
-        fetchFailureAuth(
-          res.details.map((error) => {
-            return {
-              param: error.context.key,
-              message: error.message,
-            };
-          }),
-        ),
-      );
-    } else if ('message' in res) {
-      dispatch(fetchFailureAuth([res]));
-    } else {
-      dispatch(fetchSuccessAuth(res.access_token));
+      console.log({ res });
+      if ('details' in res) {
+        dispatch(
+          fetchFailureAuth(
+            res.details.map((error) => {
+              return {
+                param: error.context.key,
+                message: error.message,
+              };
+            }),
+          ),
+        );
+      } else if ('message' in res) {
+        dispatch(fetchFailureAuth([res]));
+      } else {
+        dispatch(fetchSuccessAuth(res.access_token));
+      }
+    } catch (error) {
+      console.log({ error });
+      navigation.navigate('Auth');
     }
-  } catch (error) {
-    navigation.navigate('Auth');
-  }
-};
+  };

@@ -4,7 +4,7 @@ export default StyleSheet.create({
   wrapper: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: 'white',
+    backgroundColor: 'whitesmoke',
   },
   container: {
     padding: 15,

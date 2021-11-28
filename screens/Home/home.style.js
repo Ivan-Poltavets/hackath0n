@@ -10,13 +10,12 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   logoText: {
-    fontSize: 36,
+    fontSize: 50,
     fontWeight: 'bold',
     marginHorizontal: 10,
   },
   logoTextAccent: {
     color: 'red',
-    fontWeight: 'normal',
   },
   image: {
     width: '100%',

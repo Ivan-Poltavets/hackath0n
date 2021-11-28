@@ -15,7 +15,7 @@ const Button = ({ iconName, title, press, primary, simple }) => {
       onPress={press}
     >
       {iconName && (
-        <Icon style={styles.icon} name={iconName} size={25} />
+        <Icon style={styles.icon} name={iconName} size={25} color="grey" />
       )}
       {title && (
         <Text style={[styles.text, primary && styles.textPrimary]}>
