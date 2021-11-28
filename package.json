@@ -13,7 +13,9 @@
     "@expo/vector-icons": "^12.0.5",
     "@react-navigation/drawer": "^6.1.8",
     "@react-navigation/native": "^6.0.6",
+    "@react-navigation/native-stack": "^6.2.5",
     "expo": "~43.0.2",
+    "expo-checkbox": "~2.0.0",
     "expo-location": "~13.0.4",
     "expo-status-bar": "~1.1.0",
     "react": "17.0.1",
@@ -24,11 +26,17 @@
     "react-native-maps-super-cluster": "^1.6.0",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "~3.8.0",
+    "react-native-vector-icons": "^9.0.0",
     "react-native-web": "0.17.1",
-    "expo-checkbox": "~2.0.0"
+    "react-redux": "^7.2.6",
+    "redux": "^4.1.2",
+    "redux-thunk": "^2.4.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9"
+    "@babel/core": "^7.12.9",
+    "typescript": "~4.3.5",
+    "@types/react": "~17.0.21",
+    "@types/react-native": "~0.64.12"
   },
   "private": true
 }
