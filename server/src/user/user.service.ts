@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcryptjs';
 
 import { AuthService } from 'src/auth/auth.service';
-import { JWTAuthDTO, RegisterUserDTO } from 'src/dtos';
+import { JWTAuthDTO, JWTPayloadDTO, RegisterUserDTO } from 'src/dtos';
 import { User } from 'src/entities';
 import { UserRepository } from 'src/repositories/user.repository';
 
@@ -27,5 +27,9 @@ export class UserService {
     });
 
     return this.authService.login(user);
+  }
+
+  async getMe(user: JWTPayloadDTO): Promise<User> {
+    return this.userRepository.findUserById(user);
   }
 }

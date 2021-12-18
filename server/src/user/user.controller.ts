@@ -15,13 +15,6 @@ import { UserService } from './user.service';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @UseGuards(JwtAuthGuard)
-  @Post('protected')
-  async protected(@Request() req) {
-    // return 'some protected info' + req.user;
-    return 'some protected info';
-  }
-
   @Post('register')
   async registerUser(@Body() registerUserDTO: RegisterUserDTO) {
     return this.userService.registerUser(registerUserDTO);
@@ -32,5 +25,11 @@ export class UserController {
   loginUser(@Request() req) {
     console.log({ user: req.user });
     return this.userService.loginUser(req.user);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('me')
+  getMe(@Request() req) {
+    return this.userService.getMe(req.user);
   }
 }

@@ -25,9 +25,7 @@ const Locations = ({ navigation, route }) => {
 
         setLocations(res);
         setInitLoad(false);
-      } catch (error) {
-        console.log({ error: error.message });
-      }
+      } catch (error) {}
     };
 
     getData();
@@ -70,13 +68,14 @@ const Locations = ({ navigation, route }) => {
             );
           }}
         />
+        <View style={styles.btnCreate}>
+          <ButtonLink
+            iconName="plus"
+            press={() => navigation.navigate('LocationCreate')}
+          />
+        </View>
         {/* {user && user.role === 'admin' && (
-          <View style={styles.btnCreate}>
-            <ButtonLink
-              iconName="plus"
-              press={() => navigation.navigate('PlaceCreate')}
-            />
-          </View>
+          
         )} */}
       </View>
       <Tabs route={route} navigation={navigation} />

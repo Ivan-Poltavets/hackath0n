@@ -52,7 +52,11 @@ export class LocationController {
 
   @Get()
   findAllLocations(): Promise<Location[]> {
-    console.log('sdfsd');
     return this.locationService.findAllLocations();
+  }
+
+  @Get('location/:id')
+  findLocation(@Param('id') id): Promise<Location> {
+    return this.locationService.findLocation(id);
   }
 }

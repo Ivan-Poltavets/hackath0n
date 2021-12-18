@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 
 import Routes from './components/Routes';
 import store from './redux/store';
+import { fetchData } from './helpers/fetch';
 
 // import React, { useRef } from 'react';
 // import MapView from 'react-native-map-clustering';
@@ -48,6 +49,22 @@ function App() {
   //     longitudeDelta: LONGITUDE_DELTA
   //   }, 1000);
   // });
+
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     try {
+  //       const res = await fetchData({
+  //         url: 'locations',
+  //         method: 'get',
+  //       });
+
+  //       setLocations(res);
+  //       setInitLoad(false);
+  //     } catch (error) {}
+  //   };
+
+  //   getData();
+  // }, []);
 
   return (
     <Provider store={store}>

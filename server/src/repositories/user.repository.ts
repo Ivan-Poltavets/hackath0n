@@ -1,7 +1,7 @@
 import { EntityRepository, Repository } from 'typeorm';
 
 import { User } from 'src/entities';
-import { RegisterUserDTO } from 'src/dtos';
+import { JWTPayloadDTO, RegisterUserDTO } from 'src/dtos';
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
@@ -12,5 +12,10 @@ export class UserRepository extends Repository<User> {
   async add(registerUserDTO: RegisterUserDTO): Promise<User> {
     const user = { ...new User(), ...registerUserDTO };
     return this.save(user);
+  }
+
+  async findUserById(user: JWTPayloadDTO): Promise<User> {
+    console.log({ user });
+    return this.findOne({ id: parseInt(user.userId) });
   }
 }

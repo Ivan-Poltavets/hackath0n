@@ -37,4 +37,8 @@ export class LocationService {
   findAllLocations(): Promise<Location[]> {
     return this.locationRepository.findAllLocations();
   }
+
+  findLocation(id: string): Promise<Location> {
+    return this.locationRepository.findLocationById(id);
+  }
 }

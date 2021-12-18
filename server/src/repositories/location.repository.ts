@@ -65,4 +65,8 @@ export class LocationRepository extends Repository<Location> {
   async findAllLocations(): Promise<Location[]> {
     return this.createQueryBuilder('locations').getMany();
   }
+
+  async findLocationById(id: string): Promise<Location> {
+    return this.createQueryBuilder('locations').where({ id }).getOne();
+  }
 }
